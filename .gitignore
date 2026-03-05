@@ -9,9 +9,13 @@
 
 # Dependencies
 node_modules/
+web/frontend/dist/
 
-# Environment files
+# Environment files（含 API Key，切勿提交）
 .env
+.env.local
+*.env.local
+web/backend/.env
 
 # 画像文件：仅保留模板，个人画像不纳入版本控制
 profiles/*

@@ -11,7 +11,27 @@
 
 ## 使用方式
 
-在 [Cursor](https://cursor.com) 中打开本仓库，由 Agent 根据规则（`.cursor/rules/profile-collector.mdc`）与技能（`.cursor/skills/`）进行对话式采集。可用话术示例：
+### Cursor 中使用
+
+在 [Cursor](https://cursor.com) 中打开本仓库，由 Agent 根据规则（`.cursor/rules/profile-collector.mdc`）与技能（`.cursor/skills/`）进行对话式采集。
+
+### Web 版（本地运行）
+
+无需 Cursor，可在浏览器中通过智谱、Kimi、Qwen、DeepSeek 等大模型 API 使用。详见 [web/README.md](web/README.md)。
+
+```bash
+# 1. 配置 .env（在 web/backend 下创建 .env，填入 API Key）
+cd web/backend && cp .env.example .env  # 编辑 .env
+
+# 2. 启动后端
+pip install -r requirements.txt && uvicorn main:app --reload --port 8000
+
+# 3. 启动前端（新终端）
+cd web/frontend && npm install && npm run dev
+# 访问 http://localhost:5173
+```
+
+可用话术示例：
 
 | 意图     | 示例说法                           |
 |----------|------------------------------------|
@@ -31,10 +51,13 @@ tashan-profile-helper/
 ├── doc/                 # 量表题目与画像说明文档
 ├── profiles/            # 画像存储目录
 │   └── _template.md     # 画像模板（唯一纳入版本控制的画像文件）
+├── web/                 # Web 版（React + FastAPI）
+│   ├── backend/        # 后端 API、Agent、工具
+│   └── frontend/       # 前端界面
 └── README.md
 ```
 
-**隐私说明**：`profiles/` 下除 `_template.md` 外的个人画像文件已通过 `.gitignore` 排除，不会提交到仓库，仅保留在本地。
+**隐私说明**：`profiles/` 下除 `_template.md` 外的个人画像文件、`web/backend/.env`（API Key）已通过 `.gitignore` 排除，不会提交到仓库。
 
 ## 画像维度
 
@@ -50,4 +73,4 @@ tashan-profile-helper/
 
 ## 许可与致谢
 
-本仓库为「他山画像系统」的本地采集与维护工具，供个人或团队在 Cursor 环境中使用。
+本仓库为「他山画像系统」的本地采集与维护工具，支持 Cursor 与 Web 两种使用方式。

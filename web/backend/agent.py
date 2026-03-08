@@ -5,6 +5,7 @@ from datetime import date
 from config import LLM_PROVIDER, get_api_key
 from llm_client import create_client, get_model
 from prompts import META_SYSTEM_PROMPT
+from sessions import save_forum_profile, save_profile
 from tools import read_skill, read_doc, SKILL_NAMES, DOC_NAMES
 
 # OpenAI 兼容的 tools 定义
@@ -57,7 +58,7 @@ TOOLS = [
         "type": "function",
         "function": {
             "name": "write_profile",
-            "description": "将科研数字分身内容写入会话。采集到数据后必须调用此工具保存，不要只在对话中展示而不保存。",
+            "description": "将科研数字分身内容写入会话并同步保存到 profiles 目录。创建和更新过程中每获得一轮可保存信息后都应立即调用此工具。",
             "parameters": {
                 "type": "object",
                 "properties": {
@@ -74,7 +75,7 @@ TOOLS = [
         "type": "function",
         "function": {
             "name": "write_forum_profile",
-            "description": "将他山论坛分身写入会话。当用户确认「生成他山论坛分身」并完成隐私设置后，用此工具保存内容。",
+            "description": "将他山论坛分身写入会话并同步保存到 profiles 目录。当用户确认生成后，用此工具保存内容。",
             "parameters": {
                 "type": "object",
                 "properties": {
@@ -100,12 +101,12 @@ def _execute_tool(name: str, args: dict, session: dict) -> str:
         return session["profile"]
     if name == "write_profile":
         content = args.get("content", "")
-        session["profile"] = content
-        return f"已写入科研数字分身，共 {len(content)} 字符。"
+        path = save_profile(session, content)
+        return f"已写入科研数字分身并保存到 {path.name}，共 {len(content)} 字符。"
     if name == "write_forum_profile":
         content = args.get("content", "")
-        session["forum_profile"] = content
-        return f"已写入他山论坛分身，共 {len(content)} 字符。"
+        path = save_forum_profile(session, content)
+        return f"已写入他山论坛分身并保存到 {path.name}，共 {len(content)} 字符。"
     return f"未知工具: {name}"
 
 

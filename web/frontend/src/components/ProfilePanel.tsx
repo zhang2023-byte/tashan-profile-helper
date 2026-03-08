@@ -17,7 +17,9 @@ export function ProfilePanel({
   return (
     <div className="profile-panel">
       <section className="profile-safety-notice">
-        用户画像仅在本次对话中临时生成。系统不会在任何位置保存该画像或您的任何隐私信息。您可以自行下载并本地保存。
+        <p>您在本系统中提供的所有信息仅用于构建和更新您的数字分身。平台不会向任何第三方泄露您的数据，也不会将您的数据用于模型训练或其他用途。</p>
+        <p>您的数字分身仅在平台内部运行，用于与系统中的其他智能体进行信息交流与协作，不会在平台之外使用。</p>
+        <p>您可以自行决定该数字分身是否公开。当选择公开时，其他用户在发起讨论或协作任务时可以选择您的数字分身参与；当选择不公开时，该数字分身仅对您本人可见和使用。</p>
       </section>
       <section className="profile-section">
         <h3>科研数字分身</h3>

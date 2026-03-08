@@ -397,6 +397,14 @@
   line-height: 1.5;
 }
 
+.profile-safety-notice p {
+  margin: 0 0 0.75rem;
+}
+
+.profile-safety-notice p:last-child {
+  margin-bottom: 0;
+}
+
 .profile-section {
   background: #ffffff;
   border: 1px solid #e5e7eb;

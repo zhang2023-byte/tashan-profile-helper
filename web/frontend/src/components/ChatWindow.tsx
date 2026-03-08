@@ -173,7 +173,7 @@ export function ChatWindow() {
           {messages.length === 0 && (
             <div className="welcome">
               <p>你好，我是科研数字分身采集助手。</p>
-              <p>你可以直接粘贴 AI 记忆回复进行导入，或说「帮我建立分身」开始。无需先提供姓名，保存时会再询问。</p>
+              <p>可以说「帮我建立分身」开始。</p>
             </div>
           )}
           {messages

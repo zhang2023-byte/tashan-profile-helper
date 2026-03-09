@@ -68,6 +68,11 @@ tashan-profile-helper/
 
 详见 `doc/tashan-profile-outline.md`。
 
+
+## Web 化改造参考
+
+如果你希望把当前 Cursor 版助手改造成网站应用，可参考：`doc/web-version-guide.md`。
+
 ## 许可与致谢
 
 本仓库为「他山数字分身系统」的本地采集与维护工具，支持 Cursor 与 Web 两种使用方式。
